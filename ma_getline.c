@@ -23,6 +23,7 @@ void my_prompt(void)
 int main(void)
 {
 	char read[WORD_LIMIT];
+	pid_t my_d = fork();
 
 	while (1)
 	{
@@ -34,14 +35,13 @@ int main(void)
 		}
 
 		read[strcspn(read, "\n")] = '\0';
-		pid_t my_pid = fork();
 
-		if (my_pid < 0)
+		if (my_d < 0)
 		{
 			perror("Fork failed");
 			exit(EXIT_FAILURE);
 		}
-		else if (my_pid == 0)
+		else if (my_d == 0)
 		{
 			if (execlp(read, read, (char *)NULL) == -1)
 			{
@@ -51,7 +51,7 @@ int main(void)
 		}
 		else
 		{
-			waitpid(my_pid, NULL, 0);
+			waitpid(my_d, NULL, 0);
 		}
 	}
 
