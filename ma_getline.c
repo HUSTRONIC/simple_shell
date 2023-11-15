@@ -13,6 +13,7 @@
 ssize_t ma_getline(char **lineptr, size_t *n, FILE *stream)
 {
 	size_t x = 0;
+	char *lineptr2;
 	int c;
 	ssize_t byte_count;
 
@@ -37,7 +38,7 @@ ssize_t ma_getline(char **lineptr, size_t *n, FILE *stream)
 		if (x >= *n - 1)
 		{
 			*n *= 2;
-			char *lineptr2 = (char *)realloc(*lineptr, *n);
+			lineptr2 = (char *)realloc(*lineptr, *n);
 			if (lineptr2 == NULL)
 				return (-1);
 			*lineptr = lineptr2;
