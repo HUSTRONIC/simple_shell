@@ -1,82 +1,60 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "main.h"
+#include <string.h>
+#include <unistd.h>
+#include <sys/types.h>
+#include <sys/wait.h>
+
+#define WORD_LIMIT 100
 
 /**
- * ma_getline - reads a line of text from  the input stream.
- * @lineptr: A pointer to buffer store for the line.
- * @n: A pointer to the buffer size.
- * @stream: the file to read the text from.
- *
- * Return: Number of bytes read, otherwise -1 on error.
+ * my_prompt - Display the shell prompt.
  */
-ssize_t ma_getline(char **lineptr, size_t *n, FILE *stream)
+void my_prompt(void)
 {
-	size_t x = 0;
-	char *lineptr2;
-	int c;
-	ssize_t byte_count;
-
-	if (lineptr == NULL || n == NULL || stream == NULL)
-		return (-1);
-	if (*lineptr == NULL)
-	{
-		*n = 1024;
-		*lineptr = (char *)malloc(*n);
-		if (*lineptr == NULL)
-		return (-1);
-	}
-	while (1)
-	{
-		c = fgetc(stream);
-		if (c == EOF)
-		{
-			if (x == 0)
-				return (0);
-			break;
-		}
-		if (x >= *n - 1)
-		{
-			*n *= 2;
-			lineptr2 = (char *)realloc(*lineptr, *n);
-			if (lineptr2 == NULL)
-				return (-1);
-			*lineptr = lineptr2;
-		}
-		(*lineptr)[x++] = (char)c;
-		if (c == '\n')
-			break;
-	}
-	(*lineptr)[x] = '\0';
-	byte_count = x;
-	return (byte_count);
+	printf("#cisfun$ ");
 }
+
 /**
- * main - entry point.
+ * main - Simple shell program.
  *
- * return: 0 on success.
+ * Return: Always 0.
  */
 int main(void)
 {
-	char *linptr = NULL;
-	size_t count = 0;
-	ssize_t txt_read;
+	char read[WORD_LIMIT];
 
 	while (1)
 	{
-		printf("$ ");
-		fflush(stdout);
-
-		txt_read = ma_getline(&linptr, &count, stdin);
-		if (txt_read == -1)
+		my_prompt();
+		if (fgets(read, sizeof(read), stdin) == NULL)
 		{
-			printf("Error while reading input\n");
+			printf("\nsleep time. :)\n");
 			break;
 		}
-		else if (txt_read == 0)
-			break;
-		printf("%s", linptr);
+
+		read[strcspn(read, "\n")] = '\0';
+		pid_t my_pid = fork();
+
+		if (my_pid < 0)
+		{
+			perror("Fork failed");
+			exit(EXIT_FAILURE);
+		}
+		else if (my_pid == 0)
+		{
+			if (execlp(read, read, (char *)NULL) == -1)
+			{
+				fprintf(stderr, "Error: Command '%s' not found.\n", read);
+				exit(EXIT_FAILURE);
+			}
+		}
+		else
+		{
+			waitpid(my_pid, NULL, 0);
+		}
 	}
-	free(linptr);
+
 	return (0);
 }
+
