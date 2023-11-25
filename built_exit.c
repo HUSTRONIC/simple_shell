@@ -12,9 +12,9 @@ void func_exit(char **args)
 
 	if (args[1] != NULL)
 	{
-		_stat = _atoi(args[1]);
+		_stat = f_atoi(args[1]);
 	}
-	free_tokens(args);
+	f_tok(args);
 	f_l_put();
 	exit(_stat);
 }

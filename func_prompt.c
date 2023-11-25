@@ -7,6 +7,6 @@
  */
 void func_prompt(void)
 {
-	f_puts(PROMPT);
+	f_put(PROMPT);
 	fflush(stdout);
 }

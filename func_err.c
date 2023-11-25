@@ -11,7 +11,7 @@ void f_put(char *str)
 	size_t ln;
 	ssize_t n_write;
 
-	ln = _strlen(str);
+	ln = f_strlen(str);
 	n_write = write(STDOUT_FILENO, str, ln);
 	if (n_write == -1)
 	{
@@ -30,7 +30,7 @@ void f_puterror(char *err)
 	size_t ln;
 	ssize_t n_write;
 
-	ln = _strlen(err);
+	ln = f_strlen(err);
 	n_write = write(STDERR_FILENO, err, ln);
 	if (n_write == -1)
 	{

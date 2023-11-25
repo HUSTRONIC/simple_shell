@@ -47,7 +47,7 @@ void f_path(void)
 
 		while (environ[i] != NULL)
 		{
-			if (_strncmp(environ[i], "PATH=", 5) == 0)
+			if (f_strncmp(environ[i], "PATH=", 5) == 0)
 			{
 				free(environ[i]);
 				environ[i] = NULL;

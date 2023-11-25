@@ -28,7 +28,7 @@ int func_exec(char **argv)
 		perror(argv[0]), f_tok(argv), f_l_put();
 	if (id == 0)
 	{
-		envp[0] = get_path();
+		envp[0] = func_g_path();
 		envp[1] = NULL;
 		cmd_path = NULL;
 		if (argv[0][0] != '/')
