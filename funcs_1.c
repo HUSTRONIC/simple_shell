@@ -1,8 +1,8 @@
 #include "shell.h"
+#include <stdio.h>
 
 /**
- * f_strlen - Thisreturns the required
- * length of that  string
+ * f_strlen - This returns the required length of the string.
  * @s: the string to be checked.
  *
  * Return: The required length of the string.
@@ -23,9 +23,9 @@ int f_strlen(const char *s)
  * f_strcmp - This Compares two strings.
  * @s1: First string.
  * @s2: Second string.
- * Return: 0 if @s1 and @s2 are equal,
- *         a negative value if @s1 is less than @s2,
- *         or a positive value if @s1 is greater than @s2.
+ * Return: 0 if @s1 and @s2 are equal.
+ * negative value if @s1 is less than @s2.
+ * positive value if @s1 is greater than @s2.
  */
 int f_strcmp(const char *s1, const char *s2)
 {
@@ -39,10 +39,10 @@ int f_strcmp(const char *s1, const char *s2)
 }
 
 /**
- * f_strncmp - this Compares the two required strings.
+ * f_strncmp - this compares two required strings.
  * @s1: First string.
  * @s2: the required second string.
- * @n: The Maximum number of characters
+ * @n: The maximum number of characters read.
  *
  * Return: 0, else a positive value.
  */
@@ -65,8 +65,8 @@ int f_strncmp(const char *s1, const char *s2, size_t n)
 }
 
 /**
- * _strstr - This checks start of the needle
- * @haystack: The required string to be searched
+ * f_strstr - checks for the start of the needle
+ * @haystack: Required string that will be searched
  * @needle: the alternative string
  *
  * Return: The address of next char else NULL
@@ -99,13 +99,12 @@ char *f_strstr(char *haystack, char *needle)
 }
 
 /**
- * f_strchr - the function that locates the required
- *  character.
+ * f_strchr - the function that locates the required character.
  *
  * @s: the pointer to the array of string.
  * @c: the character to locate.
  *
- * Return: first charatcer else null 
+ * Return: first charatcer else null
  */
 
 char *f_strchr(char *s, char c)

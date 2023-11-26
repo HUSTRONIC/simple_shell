@@ -9,6 +9,7 @@
 int f_clear(char **args)
 {
 	(void)args;
+
 	f_put("\033[2J\033[H");
 	return (1);
 }

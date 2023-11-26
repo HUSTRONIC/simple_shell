@@ -1,13 +1,14 @@
 #include "shell.h"
+#include <stdio.h>
 
 /**
- * f_error - this function frees allocated pointers
- * @argv: points to a pointer the  array
+ * f_error - frees all the allocated pointers.
+ * @argv: points to a pointer of an  array
  * @arg: pointer to a pointer of an array
  *
  * Return: void.
  */
-void free_error(char **argv, char *arg)
+void f_error(char **argv, char *arg)
 {
 	int i;
 
@@ -19,8 +20,8 @@ void free_error(char **argv, char *arg)
 }
 
 /**
- * free_tokens - this frees required memory allocated
- * @ptr: the pointer to the required allocated memory
+ * f_tok - frees the required memory allocated
+ * @ptr: the pointer to the allocated memory required.
  *
  * Return: void.
  */
@@ -37,7 +38,7 @@ void f_tok(char **ptr)
 /**
  * f_path - this frees the variable to the PATH
  *
- * Return: Nothing
+ * Return: voidg
  */
 void f_path(void)
 {

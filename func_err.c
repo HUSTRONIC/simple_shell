@@ -1,4 +1,5 @@
 #include "shell.h"
+#include <stdio.h>
 
 /**
  * f_put - display a string to the stream
@@ -20,8 +21,8 @@ void f_put(char *str)
 }
 
 /**
- * f _puterror - this Prints the error message to output
- * @err:  message to print
+ * f_puterror - this prints the error message to the  output.
+ * @err:  message to be printed.
  *
  * Return: Void
  */
